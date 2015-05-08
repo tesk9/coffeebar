@@ -1,0 +1,15 @@
+{
+  "name": "coffeebar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "coffee --compile coffeebar.coffee && jasmine"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "coffee-script": "^1.9.2",
+    "jasmine": "^2.3.1"
+  }
+}
