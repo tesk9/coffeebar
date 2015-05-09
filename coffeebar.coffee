@@ -33,14 +33,13 @@ _.find = (collection, predicate) ->
 _.filter = (collection, predicate) ->
   result = []
   _.each collection, (val, ind, list) ->
-    if predicate val, ind, list
-      result.push val
+    if predicate val, ind, list then result.push val
   result
 
 _.where = (list, keyValuePairs) ->
   _.filter list, (obj) ->
     for wantedKey, wantedVal of keyValuePairs
-      if obj[wantedKey] != wantedVal then return false
+      if obj[wantedKey] isnt wantedVal then return false
     true
     
 _.findWhere = (list, keyValuePairs) ->
@@ -58,6 +57,20 @@ _.every = (list, predicate) ->
   _.each list, (val, ind, list) ->
     if not predicate val, ind, list then isTrue = false
   isTrue
+
+_.some = (list, predicate) ->
+  isTrue = false;
+  _.each list, (val, ind, list) ->
+    if predicate val, ind, list then isTrue = true
+  isTrue
+
+_.contains = (list, value, fromIndex) ->
+  if Array.isArray list
+    if list.indexOf(value, fromIndex) then true else false
+  else
+    _.some list, (val, ind, list) ->
+      val is value
+
 
 
 

@@ -204,8 +204,49 @@ describe("Underbar written in coffeescript", function() {
         expect(result).toBe(false);
       });
 
+    });
+
+    describe("some", function() {
+
+      it("returns true if a predicate returns true for any value in the passed-in collection", function() {
+        var result = _.some(arr, function(val) {
+          return val === 3; 
+        });
+        expect(result).toBe(true);
+      });
+
+      it("returns false if a predicate returns false for all values in the passed-in collection", function() {
+        var result = _.some(arr, function(val) {
+          return val > 5; 
+        });
+        expect(result).toBe(false);
+      });
 
     });
+
+    describe("contains", function() {
+
+      it("returns true if array contains passed-in value", function() {
+        var res = _.contains(arr, 3);
+        expect(res).toBe(true);
+      });
+
+      xit("looks for value in array starting from passed-in fromIndex", function() {
+        var res = _.contains(arr, 3, 3);
+        expect(res).toBe(false);
+      });
+
+      it("returns true if an object does not contain passed-in value", function() {
+        var res = _.contains(obj, "Tessa");
+        expect(res).toBe(true);
+      });
+
+      it("returns false if an object does not contain passed-in value", function() {
+        var res = _.contains(obj, 5);
+        expect(res).toBe(false);
+      });      
+
+    })
 
 
   });
