@@ -53,4 +53,10 @@ _.findWhere = (list, keyValuePairs) ->
         return false
     return true
 
+_.reject = (list, predicate) ->
+  _.filter list, (val, ind, list) ->
+    !predicate val, ind, list
+
+
+
 module.exports = _

@@ -170,6 +170,24 @@ describe("Underbar written in coffeescript", function() {
 
     });
 
+    describe("reject", function() {
+
+      it("returns an array of values that do NOT pass the truth test when passed an array", function() {
+        var result = _.reject(arr, function(val) {
+          return val > 2;
+        });
+        expect(result).toEqual([1,2]);
+      });
+
+      it("returns an array of values that do NOT pass the truth test when passed an object", function() {
+        var result = _.reject(obj, function(val, key) {
+          return key === "hometown";
+        });
+        expect(result).toEqual(["Tessa", "San Francisco"]);
+      });
+
+    });
+
 
   });
 
