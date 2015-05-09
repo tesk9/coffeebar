@@ -32,4 +32,13 @@ _.find = (collection, predicate) ->
         return val
   undefined
 
+_.filter = (collection, predicate) ->
+  result = []
+  _.each collection, (val, ind, list) ->
+    if predicate val, ind, list
+      result.push val
+  result
+
+
+
 module.exports = _

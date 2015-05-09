@@ -111,6 +111,24 @@ describe("Underbar written in coffeescript", function() {
 
     });
 
+    describe("filter", function() {
+
+      it("returns an array of values that pass the truth test when passed an array", function() {
+        var result = _.filter(arr, function(val) {
+          return val > 2;
+        });
+        expect(result).toEqual([3,4,5]);
+      });
+
+      it("returns an array of values that pass the truth test when passed an object", function() {
+        var result = _.filter(obj, function(val, key) {
+          return key === "hometown";
+        });
+        expect(result).toEqual(["ABQ"]);
+      });
+
+    })
+
   });
 
 });
