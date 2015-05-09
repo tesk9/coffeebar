@@ -127,7 +127,49 @@ describe("Underbar written in coffeescript", function() {
         expect(result).toEqual(["ABQ"]);
       });
 
-    })
+    });
+
+    describe("where", function() {
+      var catcher = {title: "Catcher in the Rye", author: "Steinbeck"};
+      var bookArray = [ catcher,
+                        {title: "To Kill a Mockingbird", author: "Harper Lee"},
+                        {title: "Jane Eyre", author: "Bronte"},
+                        {title: "Wuthering Heights", author: "Bronte"}
+                       ];
+
+      it("Returns an array with objects with the appropriate key-value pairs", function() {
+        var result = _.where(bookArray, { author: "Bronte" });
+        expect(result).toEqual([ {title: "Jane Eyre", author: "Bronte"}, {title: "Wuthering Heights", author: "Bronte"} ]);
+      });
+
+      it("Result array contains references to original objects", function() {
+        var result = _.where(bookArray, {title: "Catcher in the Rye"});
+        expect(result[0]).toBe(catcher);
+      });
+
+    });
+
+    describe("findWhere", function() {
+      var catcher = {title: "Catcher in the Rye", author: "Steinbeck"};
+      var jane = {title: "Jane Eyre", author: "Bronte"};
+      var bookArray = [ catcher,
+                        {title: "To Kill a Mockingbird", author: "Harper Lee"},
+                        jane,
+                        {title: "Wuthering Heights", author: "Bronte"}
+                       ];
+
+      it("Returns an array with objects with the appropriate key-value pairs", function() {
+        var result = _.findWhere(bookArray, { author: "Bronte" });
+        expect(result).toBe(jane);
+      });
+
+      it("Returns undefined if truth test not met for any value", function() {
+        var result = _.findWhere(bookArray, {title: "Boookzzz"});
+        expect(result).toBe(undefined);
+      });
+
+    });
+
 
   });
 
