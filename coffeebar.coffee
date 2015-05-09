@@ -21,4 +21,15 @@ _.reduce = (collection, accumulator, startVal) ->
       startVal = val
   startVal
 
+_.find = (collection, predicate) ->
+  if Array.isArray collection
+    for val, ind in collection
+      if predicate val, ind, collection
+        return val
+  else
+    for key, val of collection
+      if predicate val, key, collection
+        return val
+  undefined
+
 module.exports = _

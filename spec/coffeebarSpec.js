@@ -82,7 +82,6 @@ describe("Underbar written in coffeescript", function() {
     describe("reduce", function() {
 
       it("combines the values of a collection according to an accumulator with a startVal", function() {
-        console.log(arr)
         var result = _.reduce(arr, function(a, b) {
           return a + b;
         }, 5);
@@ -94,6 +93,20 @@ describe("Underbar written in coffeescript", function() {
           return a + " " + b;
         });
         expect(result).toBe("Tessa San Francisco ABQ");
+      });
+
+    });
+
+    describe("find", function() {
+
+      it("finds the first value that passes a truth test", function() {
+        var result = _.find(arr, function(val, ind) { return ind > 2 });
+        expect(result).toEqual(4);
+      });
+
+      it("returns undefined if no value passes the truth test", function() {
+        var result = _.find(arr, function(val, ind) { return val > 10 });
+        expect(result).toBe(undefined);
       });
 
     });
