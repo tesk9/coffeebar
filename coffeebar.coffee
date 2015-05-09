@@ -24,12 +24,10 @@ _.reduce = (collection, accumulator, startVal) ->
 _.find = (collection, predicate) ->
   if Array.isArray collection
     for val, ind in collection
-      if predicate val, ind, collection
-        return val
+      if predicate val, ind, collection then return val
   else
     for key, val of collection
-      if predicate val, key, collection
-        return val
+      if predicate val, key, collection then return val
   undefined
 
 _.filter = (collection, predicate) ->
@@ -42,20 +40,24 @@ _.filter = (collection, predicate) ->
 _.where = (list, keyValuePairs) ->
   _.filter list, (obj) ->
     for wantedKey, wantedVal of keyValuePairs
-      if obj[wantedKey] != wantedVal
-        return false
-    return true
+      if obj[wantedKey] != wantedVal then return false
+    true
     
 _.findWhere = (list, keyValuePairs) ->
   _.find list, (obj) ->
     for wantedKey, wantedVal of keyValuePairs
-      if obj[wantedKey] != wantedVal
-        return false
-    return true
+      if obj[wantedKey] isnt wantedVal then return false
+    true
 
 _.reject = (list, predicate) ->
   _.filter list, (val, ind, list) ->
-    !predicate val, ind, list
+    not predicate val, ind, list
+
+_.every = (list, predicate) ->
+  isTrue = true;
+  _.each list, (val, ind, list) ->
+    if not predicate val, ind, list then isTrue = false
+  isTrue
 
 
 

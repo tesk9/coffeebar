@@ -188,6 +188,25 @@ describe("Underbar written in coffeescript", function() {
 
     });
 
+    describe("every", function() {
+
+      it("returns true if a predicate returns true for every value in the passed-in collection", function() {
+        var result = _.every(arr, function(val) {
+          return typeof val === "number"; 
+        });
+        expect(result).toBe(true);
+      });
+
+      it("returns false if a predicate returns false for any value in the passed-in collection", function() {
+        var result = _.every(arr, function(val) {
+          return val > 1 && val < 3; 
+        });
+        expect(result).toBe(false);
+      });
+
+
+    });
+
 
   });
 
