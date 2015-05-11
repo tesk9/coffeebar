@@ -66,7 +66,7 @@ _.some = (list, predicate) ->
 
 _.contains = (list, value, fromIndex) ->
   if Array.isArray list
-    if list.indexOf(value, fromIndex) then true else false
+    if list.indexOf(value, fromIndex) isnt -1 then true else false
   else
     _.some list, (val, ind, list) ->
       val is value
@@ -76,6 +76,16 @@ _.invoke = (list, methodName, args...) ->
     if typeof methodName is "function" then method = methodName
     else method = value[methodName]
     method.apply value, args
+
+_.pluck = (list, propertyName) ->
+  _.map list, (val) ->
+    val[propertyName]
+
+_.max = (list, iteratee) ->
+  if iteratee then list = _.map list, iteratee
+  else list = _.map list, (val) ->
+    val
+  Math.max.apply(null, list)
 
 
 module.exports = _

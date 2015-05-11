@@ -231,7 +231,7 @@ describe("Underbar written in coffeescript", function() {
         expect(res).toBe(true);
       });
 
-      xit("looks for value in array starting from passed-in fromIndex", function() {
+      it("looks for value in array starting from passed-in fromIndex", function() {
         var res = _.contains(arr, 3, 3);
         expect(res).toBe(false);
       });
@@ -270,6 +270,30 @@ describe("Underbar written in coffeescript", function() {
 
   }); 
 
+  describe("pluck", function() {
+
+    it("Extracts a list of property values from an array of objects", function() {
+      var obj2 = {name: "Alice", location: "Wonderland"};
+      var obj3 = {name: "Taran", location: "Prydain"};
+      var arr = [obj, obj2, obj3];
+      var plucked = _.pluck(arr, "name");
+      expect(plucked).toEqual(["Tessa", "Alice", "Taran"]);
+    });
+
+  });
+
+  describe("max", function() {
+
+    it("returns the maximum value in an array", function() {
+      expect(_.max(arr)).toBe(5);
+    });
+
+    it("returns the maximum value in an object", function() {
+      var obj = {val1: 1, val2: 2, val3: 3};
+      expect(_.max(obj)).toBe(3);
+    });
+
+  })
 
   });
 
