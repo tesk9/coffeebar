@@ -87,5 +87,11 @@ _.max = (list, iteratee) ->
     val
   Math.max.apply(null, list)
 
+_.min = (list, iteratee) ->
+  if iteratee then list = _.map list, iteratee
+  else list = _.map list, (val) ->
+    val
+  Math.min.apply(null, list)
+
 
 module.exports = _

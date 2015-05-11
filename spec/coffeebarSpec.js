@@ -248,52 +248,65 @@ describe("Underbar written in coffeescript", function() {
 
     });
 
-  describe("invoke", function() {
+    describe("invoke", function() {
 
-    it("Calls the method named by methodName on each value in the list", function() {
-      var shuffledArr = [2,3,1,4,5];
-      var results = _.invoke([shuffledArr], 'sort');
-      expect(results).toEqual([arr]);
+      it("Calls the method named by methodName on each value in the list", function() {
+        var shuffledArr = [2,3,1,4,5];
+        var results = _.invoke([shuffledArr], 'sort');
+        expect(results).toEqual([arr]);
+      });
+
+      it("Does not modify original array", function() {
+        var shuffledArr = [[2,3,1,4,5]];
+        var results = _.invoke(shuffledArr, 'sort');
+        expect(results).not.toBe(shuffledArr);
+      });
+
+      it("Calls methodName with optional additional arguments", function() {
+        var greetingArr = [["Hi there,"]];
+        var results = _.invoke(greetingArr, 'concat', ["Tae,"], ["Sean,"], ["Chris, and"], ["Gunnari"]);
+        expect(results[0].join(" ")).toEqual("Hi there, Tae, Sean, Chris, and Gunnari");
+      });
+
+    }); 
+
+    describe("pluck", function() {
+
+      it("Extracts a list of property values from an array of objects", function() {
+        var obj2 = {name: "Alice", location: "Wonderland"};
+        var obj3 = {name: "Taran", location: "Prydain"};
+        var arr = [obj, obj2, obj3];
+        var plucked = _.pluck(arr, "name");
+        expect(plucked).toEqual(["Tessa", "Alice", "Taran"]);
+      });
+
     });
 
-    it("Does not modify original array", function() {
-      var shuffledArr = [[2,3,1,4,5]];
-      var results = _.invoke(shuffledArr, 'sort');
-      expect(results).not.toBe(shuffledArr);
+    describe("max", function() {
+
+      it("returns the maximum value in an array", function() {
+        expect(_.max(arr)).toBe(5);
+      });
+
+      it("returns the maximum value in an object", function() {
+        var obj = {val1: 1, val2: 2, val3: 3};
+        expect(_.max(obj)).toBe(3);
+      });
+
     });
 
-    it("Calls methodName with optional additional arguments", function() {
-      var greetingArr = [["Hi there,"]];
-      var results = _.invoke(greetingArr, 'concat', ["Tae,"], ["Sean,"], ["Chris, and"], ["Gunnari"]);
-      expect(results[0].join(" ")).toEqual("Hi there, Tae, Sean, Chris, and Gunnari");
+    describe("min", function() {
+
+      it("returns the minimum value in an array", function() {
+        expect(_.min(arr)).toBe(1);
+      });
+
+      it("returns the minimum value in an object", function() {
+        var obj = {val1: 1, val2: 2, val3: 3};
+        expect(_.min(obj)).toBe(1);
+      });
+
     });
-
-  }); 
-
-  describe("pluck", function() {
-
-    it("Extracts a list of property values from an array of objects", function() {
-      var obj2 = {name: "Alice", location: "Wonderland"};
-      var obj3 = {name: "Taran", location: "Prydain"};
-      var arr = [obj, obj2, obj3];
-      var plucked = _.pluck(arr, "name");
-      expect(plucked).toEqual(["Tessa", "Alice", "Taran"]);
-    });
-
-  });
-
-  describe("max", function() {
-
-    it("returns the maximum value in an array", function() {
-      expect(_.max(arr)).toBe(5);
-    });
-
-    it("returns the maximum value in an object", function() {
-      var obj = {val1: 1, val2: 2, val3: 3};
-      expect(_.max(obj)).toBe(3);
-    });
-
-  })
 
   });
 
