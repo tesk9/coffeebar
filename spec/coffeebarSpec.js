@@ -246,7 +246,29 @@ describe("Underbar written in coffeescript", function() {
         expect(res).toBe(false);
       });      
 
-    })
+    });
+
+  describe("invoke", function() {
+
+    it("Calls the method named by methodName on each value in the list", function() {
+      var shuffledArr = [2,3,1,4,5];
+      var results = _.invoke([shuffledArr], 'sort');
+      expect(results).toEqual([arr]);
+    });
+
+    it("Does not modify original array", function() {
+      var shuffledArr = [[2,3,1,4,5]];
+      var results = _.invoke(shuffledArr, 'sort');
+      expect(results).not.toBe(shuffledArr);
+    });
+
+    it("Calls methodName with optional additional arguments", function() {
+      var greetingArr = [["Hi there,"]];
+      var results = _.invoke(greetingArr, 'concat', ["Tae,"], ["Sean,"], ["Chris, and"], ["Gunnari"]);
+      expect(results[0].join(" ")).toEqual("Hi there, Tae, Sean, Chris, and Gunnari");
+    });
+
+  }); 
 
 
   });

@@ -71,7 +71,11 @@ _.contains = (list, value, fromIndex) ->
     _.some list, (val, ind, list) ->
       val is value
 
-
+_.invoke = (list, methodName, args...) ->
+  _.map list, (value, key, collection) ->
+    if typeof methodName is "function" then method = methodName
+    else method = value[methodName]
+    method.apply value, args
 
 
 module.exports = _
